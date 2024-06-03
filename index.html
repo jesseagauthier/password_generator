@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Including Tailwind CSS from CDN -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Password Generator / Saver</title>
+	</head>
+	<body class="bg-gray-100">
+		<!-- Main container for the app -->
+		<div id="app" class="min-h-screen flex items-center justify-center">
+			<!-- Card container for the password generator -->
+			<div
+				class="bg-white p-8 rounded shadow-md w-full max-w-md"
+				role="form"
+				aria-labelledby="password-generator-title"
+			>
+				<!-- Title of the application -->
+				<h1
+					id="password-generator-title"
+					class="text-2xl font-bold mb-6 text-center"
+				>
+					Password Generator
+				</h1>
+				<!-- Input field for password length -->
+				<div class="mb-4">
+					<label for="length" class="block text-sm font-medium text-gray-700"
+						>Password Length</label
+					>
+					<input
+						type="number"
+						id="length"
+						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+						min="1"
+						max="128"
+						value="16"
+						aria-describedby="length-description"
+					/>
+					<p id="length-description" class="sr-only">
+						Set the desired length of the password.
+					</p>
+				</div>
+				<!-- Checkbox for including lowercase letters -->
+				<div class="mb-4">
+					<label for="include-lowercase" class="inline-flex items-center">
+						<input
+							type="checkbox"
+							id="include-lowercase"
+							class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+						/>
+						<span class="ml-2 text-sm text-gray-700"
+							>Include Lowercase Letters</span
+						>
+					</label>
+				</div>
+				<!-- Checkbox for including uppercase letters -->
+				<div class="mb-4">
+					<label for="include-uppercase" class="inline-flex items-center">
+						<input
+							type="checkbox"
+							id="include-uppercase"
+							class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+						/>
+						<span class="ml-2 text-sm text-gray-700"
+							>Include Uppercase Letters</span
+						>
+					</label>
+				</div>
+				<!-- Checkbox for including numbers -->
+				<div class="mb-4">
+					<label for="include-numbers" class="inline-flex items-center">
+						<input
+							type="checkbox"
+							id="include-numbers"
+							class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+						/>
+						<span class="ml-2 text-sm text-gray-700">Include Numbers</span>
+					</label>
+				</div>
+				<!-- Checkbox for including symbols -->
+				<div class="mb-4">
+					<label for="include-symbols" class="inline-flex items-center">
+						<input
+							type="checkbox"
+							id="include-symbols"
+							class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+						/>
+						<span class="ml-2 text-sm text-gray-700">Include Symbols</span>
+					</label>
+				</div>
+				<!-- Button to generate password -->
+				<button
+					id="generate"
+					class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+					aria-live="polite"
+				>
+					Generate Password
+				</button>
+				<!-- Container to display the generated password -->
+				<div
+					id="password-output"
+					class="mt-6 p-4 bg-gray-100 text-center rounded-md border border-gray-300 text-lg font-mono"
+					aria-live="polite"
+				></div>
+			</div>
+		</div>
+		<script src="/script.js"></script>
+	</body>
+</html>
