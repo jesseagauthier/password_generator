@@ -120,10 +120,35 @@
 				</button>
 				<!-- Container to display the generated password -->
 				<div
-					id="password-output"
-					class="mt-6 p-4 bg-gray-100 text-center rounded-md border border-gray-300 text-lg font-mono"
+					id="password-output-container"
+					class="mt-6 p-4 bg-gray-100 text-center rounded-md border border-gray-300 text-lg font-mono flex"
 					aria-live="polite"
-				></div>
+				>
+					<span id="password-output"></span>
+					<button title="copy button" id="copy-button" disabled class="ml-auto">
+						<svg
+							viewBox="0 0 24 24"
+							width="25"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+							<g
+								id="SVGRepo_tracerCarrier"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></g>
+							<g id="SVGRepo_iconCarrier">
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M19.5 16.5L19.5 4.5L18.75 3.75H9L8.25 4.5L8.25 7.5L5.25 7.5L4.5 8.25V20.25L5.25 21H15L15.75 20.25V17.25H18.75L19.5 16.5ZM15.75 15.75L15.75 8.25L15 7.5L9.75 7.5V5.25L18 5.25V15.75H15.75ZM6 9L14.25 9L14.25 19.5L6 19.5L6 9Z"
+									fill="#080341"
+								></path>
+							</g>
+						</svg>
+					</button>
+				</div>
 			</div>
 		</div>
 

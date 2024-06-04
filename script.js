@@ -1,8 +1,12 @@
 // Event Listeners
 document.getElementById('generate').addEventListener('click', generatePassword)
+document
+	.getElementById('copy-button')
+	.addEventListener('click', copyToClipboard)
 
 // Container to output the generated password
 const passwordOutputContainer = document.getElementById('password-output')
+const copyButton = document.getElementById('copy-button')
 
 function generatePassword() {
 	const generatedPassword = []
@@ -33,6 +37,7 @@ function generatePassword() {
 	if (listOfCharacters.length === 0) {
 		passwordOutputContainer.innerText =
 			'Please select at least one character type.'
+		copyButton.disabled = true
 		return
 	}
 
@@ -43,4 +48,17 @@ function generatePassword() {
 
 	passwordOutputContainer.innerText = generatedPassword.join('')
 	passwordOutputContainer.setAttribute('aria-live', 'polite')
+	copyButton.disabled = false
+}
+
+function copyToClipboard() {
+	const password = passwordOutputContainer.innerText
+	navigator.clipboard.writeText(password).then(
+		() => {
+			alert('Password copied to clipboard!')
+		},
+		(err) => {
+			console.error('Could not copy text: ', err)
+		}
+	)
 }
