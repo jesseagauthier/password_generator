@@ -1,0 +1,33 @@
+/* Firefox */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #5c6ac4 #b3bcf5;
+}
+
+/* WebKit browsers (Chrome, Safari) */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #b3bcf5;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #5c6ac4;
+  border-radius: 8px;
+  border: 3px solid #b3bcf5;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #434190;
+}
+
+/* Edge and Internet Explorer */
+body {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

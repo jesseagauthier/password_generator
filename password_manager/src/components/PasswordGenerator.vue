@@ -1,0 +1,184 @@
+<template>
+  <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div
+      class="bg-white p-8 rounded shadow-md w-full max-w-md"
+      role="form"
+      aria-labelledby="password-generator-title"
+    >
+      <div class="flex justify-between">
+        <h1 id="password-generator-title" class="text-2xl font-bold mb-6 text-center self-center">
+          Password Generator
+        </h1>
+        <a
+          href="https://github.com/jesseagauthier/password_generator"
+          target="_blank"
+          rel="noopener"
+          title="github"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="50"
+            height="50"
+            viewBox="0 0 50 50"
+          >
+            <path
+              d="M17.791,46.836C18.502,46.53,19,45.823,19,45v-5.4c0-0.197,0.016-0.402,0.041-0.61C19.027,38.994,19.014,38.997,19,39 c0,0-3,0-3.6,0c-1.5,0-2.8-0.6-3.4-1.8c-0.7-1.3-1-3.5-2.8-4.7C8.9,32.3,9.1,32,9.7,32c0.6,0.1,1.9,0.9,2.7,2c0.9,1.1,1.8,2,3.4,2 c2.487,0,3.82-0.125,4.622-0.555C21.356,34.056,22.649,33,24,33v-0.025c-5.668-0.182-9.289-2.066-10.975-4.975 c-3.665,0.042-6.856,0.405-8.677,0.707c-0.058-0.327-0.108-0.656-0.151-0.987c1.797-0.296,4.843-0.647,8.345-0.714 c-0.112-0.276-0.209-0.559-0.291-0.849c-3.511-0.178-6.541-0.039-8.187,0.097c-0.02-0.332-0.047-0.663-0.051-0.999 c1.649-0.135,4.597-0.27,8.018-0.111c-0.079-0.5-0.13-1.011-0.13-1.543c0-1.7,0.6-3.5,1.7-5c-0.5-1.7-1.2-5.3,0.2-6.6 c2.7,0,4.6,1.3,5.5,2.1C21,13.4,22.9,13,25,13s4,0.4,5.6,1.1c0.9-0.8,2.8-2.1,5.5-2.1c1.5,1.4,0.7,5,0.2,6.6c1.1,1.5,1.7,3.2,1.6,5 c0,0.484-0.045,0.951-0.11,1.409c3.499-0.172,6.527-0.034,8.204,0.102c-0.002,0.337-0.033,0.666-0.051,0.999 c-1.671-0.138-4.775-0.28-8.359-0.089c-0.089,0.336-0.197,0.663-0.325,0.98c3.546,0.046,6.665,0.389,8.548,0.689 c-0.043,0.332-0.093,0.661-0.151,0.987c-1.912-0.306-5.171-0.664-8.879-0.682C35.112,30.873,31.557,32.75,26,32.969V33 c2.6,0,5,3.9,5,6.6V45c0,0.823,0.498,1.53,1.209,1.836C41.37,43.804,48,35.164,48,25C48,12.318,37.683,2,25,2S2,12.318,2,25 C2,35.164,8.63,43.804,17.791,46.836z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+      <div class="mb-4">
+        <label for="length" class="block text-sm font-medium text-gray-700">Password Length</label>
+        <input
+          type="number"
+          id="length"
+          v-model="passwordLength"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          min="1"
+          max="128"
+          aria-describedby="length-description"
+        />
+        <p id="length-description" class="sr-only">Set the desired length of the password.</p>
+      </div>
+      <div class="mb-4">
+        <label for="include-lowercase" class="inline-flex items-center">
+          <input
+            type="checkbox"
+            id="include-lowercase"
+            v-model="withLowerCase"
+            class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+          />
+          <span class="ml-2 text-sm text-gray-700">Include Lowercase Letters</span>
+        </label>
+      </div>
+      <div class="mb-4">
+        <label for="include-uppercase" class="inline-flex items-center">
+          <input
+            type="checkbox"
+            id="include-uppercase"
+            v-model="withUpperCase"
+            class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+          />
+          <span class="ml-2 text-sm text-gray-700">Include Uppercase Letters</span>
+        </label>
+      </div>
+      <div class="mb-4">
+        <label for="include-numbers" class="inline-flex items-center">
+          <input
+            type="checkbox"
+            id="include-numbers"
+            v-model="withNumbers"
+            class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+          />
+          <span class="ml-2 text-sm text-gray-700">Include Numbers</span>
+        </label>
+      </div>
+      <div class="mb-4">
+        <label for="include-symbols" class="inline-flex items-center">
+          <input
+            type="checkbox"
+            id="include-symbols"
+            v-model="withSymbols"
+            class="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+          />
+          <span class="ml-2 text-sm text-gray-700">Include Symbols</span>
+        </label>
+      </div>
+      <button
+        id="generate"
+        @click="generatePassword"
+        class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        aria-live="polite"
+      >
+        Generate Password
+      </button>
+      <div
+        id="password-output-container"
+        class="mt-6 p-4 bg-gray-100 text-center rounded-md border border-gray-300 text-lg font-mono flex"
+        aria-live="polite"
+      >
+        <span id="password-output">{{ generatedPassword }}</span>
+        <button
+          title="copy button"
+          id="copy-button"
+          :disabled="!generatedPassword"
+          @click="copyToClipboard"
+          class="ml-auto"
+        >
+          <svg viewBox="0 0 24 24" width="25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M19.5 16.5L19.5 4.5L18.75 3.75H9L8.25 4.5L8.25 7.5L5.25 7.5L4.5 8.25V20.25L5.25 21H15L15.75 20.25V17.25H18.75L19.5 16.5ZM15.75 15.75L15.75 8.25L15 7.5L9.75 7.5V5.25L18 5.25V15.75H15.75ZM6 9L14.25 9L14.25 19.5L6 19.5L6 9Z"
+                fill="#080341"
+              ></path>
+            </g>
+          </svg>
+        </button>
+      </div>
+      <button
+        class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-6"
+        :disabled="!generatedPassword"
+        v-if="generatedPassword"
+      >
+        Save Password
+      </button>
+      <dialog open>
+        <p>Greetings, one and all!</p>
+        <form method="dialog">
+          <button>OK</button>
+        </form>
+      </dialog>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const passwordLength = ref(16)
+const withLowerCase = ref(false)
+const withUpperCase = ref(false)
+const withNumbers = ref(false)
+const withSymbols = ref(false)
+const generatedPassword = ref('')
+
+const generatePassword = () => {
+  const characters = []
+  if (withLowerCase.value) characters.push(...'abcdefghijklmnopqrstuvwxyz')
+  if (withUpperCase.value) characters.push(...'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+  if (withNumbers.value) characters.push(...'0123456789')
+  if (withSymbols.value) characters.push(...'~`!@#$%^&*()_-+={[}]|:;')
+
+  if (characters.length === 0) {
+    generatedPassword.value = 'Please select at least one character type.'
+    return
+  }
+
+  let password = ''
+  for (let i = 0; i < passwordLength.value; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length)
+    password += characters[randomIndex]
+  }
+
+  generatedPassword.value = password
+}
+
+const copyToClipboard = () => {
+  navigator.clipboard.writeText(generatedPassword.value).then(
+    () => {
+      console.log('Password copied to clipboard!')
+    },
+    (err) => {
+      console.error('Could not copy text: ', err)
+    }
+  )
+}
+</script>
+
+<style></style>
